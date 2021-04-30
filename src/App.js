@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useEffect, useState } from 'react';
+import Login from "./Login";
+import Home from "./Home";
+import {firebase} from './utils/firebase';
+
+let UserContext = React.createContext();
 
 function App() {
+  let [user, setUser] = useState();
+
+  useEffect(function () {
+    firebase.auth().onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value = {{user, setUser}}>
+      <div className="App">
+        <Login />
+        <Home/>
+      </div>
+    </UserContext.Provider>
   );
 }
 
-export default App;
+export {App, UserContext};
