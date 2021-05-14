@@ -15,7 +15,29 @@ function Login() {
   };
 
   return (
-    <div>
+    <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      width: "100vw",
+      minHeight: "100vh",
+      background: "#cccccc",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        width: "300px",
+        padding: "100px",
+        background: "#222222",
+        borderRadius: "20px",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
       {user ? (
         <button
           onClick={function () {
@@ -31,7 +53,8 @@ function Login() {
         />
       )}
     </div>
-  );
+  </div>
+);
 }
 
 export default Login;
