@@ -11,50 +11,53 @@ function Login() {
     signInFlow: "popup",
     signInSuccessUrl: "/",
     // We will display Google.
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
   };
 
   return (
     <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      width: "100vw",
-      minHeight: "100vh",
-      background: "#cccccc",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    <div
       style={{
         display: "flex",
-        flexDirection: "row",
-        width: "300px",
-        padding: "100px",
-        background: "#222222",
-        borderRadius: "20px",
+        flexDirection: "column",
+        width: "100vw",
+        minHeight: "100vh",
+        background: "#cccccc",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
       }}
     >
-      {user ? (
-        <button
-          onClick={function () {
-            firebase.auth().signOut();
-          }}
-        >
-          Logout
-        </button>
-      ) : (
-        <StyledFirebaseAuth
-          uiConfig={uiConfig}
-          firebaseAuth={firebase.auth()}
-        />
-      )}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "300px",
+          padding: "100px",
+          background: "#222222",
+          borderRadius: "20px",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {user ? (
+          <button
+            onClick={function () {
+              firebase.auth().signOut();
+            }}
+          >
+            Logout
+          </button>
+        ) : (
+          <StyledFirebaseAuth
+            uiConfig={uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Login;

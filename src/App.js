@@ -13,6 +13,18 @@ function App() {
   useEffect(function () {
     firebase.auth().onAuthStateChanged((user) => {
       setUser(user);
+
+      if (user) {
+        user
+          .getIdToken(/* forceRefresh */ true)
+          .then(function (idToken) {
+            console.log(idToken);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } else {
+      }
     });
   }, []);
 
