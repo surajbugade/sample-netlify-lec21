@@ -16,7 +16,7 @@ function Home() {
       <button
         onClick={function () {
           axios
-            .get("http://localhost:5000/alive")
+            .get("https://desolate-ravine-33197.herokuapp.com/alive")
             .then(function (response) {
               console.log(response);
             })
