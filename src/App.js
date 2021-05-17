@@ -4,6 +4,7 @@ import Login from "./Login";
 import Home from "./Home";
 import { firebase } from "./utils/firebase";
 import { Route, Switch } from "react-router";
+import axios from "./utils/axios";
 
 let UserContext = React.createContext();
 
@@ -18,7 +19,8 @@ function App() {
         user
           .getIdToken(/* forceRefresh */ true)
           .then(function (idToken) {
-            console.log(idToken);
+            axios.defaults.headers["Authorization"] = `Bearer ${idToken}`;
+            console.log(axios.defaults.headers["Authorization"]);
           })
           .catch(function (error) {
             console.log(error);
